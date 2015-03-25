@@ -36,7 +36,7 @@ $tpl = <<<EOT
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
 							<div class="large">$chunkArr[cart_cost] р.</div>
-							<div class="text-muted">Обород</div>
+							<div class="text-muted">Оборот</div>
 						</div>
 					</div>
 				</div>
@@ -49,7 +49,7 @@ $tpl = <<<EOT
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
 							<div class="large">$chunkArr[users_count]</div>
-							<div class="text-muted">Покупателей</div>
+							<div class="text-muted">Пользователей</div>
 						</div>
 					</div>
 				</div>
