@@ -1,0 +1,5 @@
+Changelog for shopStats.
+
+1.0.0-beta
+==============
+
