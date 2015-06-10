@@ -44,31 +44,6 @@ class shopStats {
 		$this->modx->lexicon->load('shopstats:default');
 	}
 
-	// public function initialize($ctx = 'web', $scriptProperties = array()) {
-	// 	$this->config = array_merge($this->config, $scriptProperties);
-	// 	$this->config['ctx'] = $ctx;
-	// 	if (!empty($this->initialized[$ctx])) {
-	// 		return true;
-	// 	}
-	// 	switch ($ctx) {
-	// 		case 'mgr':
-	// 			//if (!$this->assetsLoaded) {
-	// 				// $this->modx->regClientCSS('/assets/components/shopstats/css/mgr/AdminLTE.css');
-	// 	 		//     $this->modx->regClientCSS('/assets/components/shopstats/css/mgr/morris/morris.css');
-	// 				// $this->modx->regClientCSS('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
-	// 				// $this->modx->regClientCSS('//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css');
-
-	// 				// $this->modx->regClientStartupScript("<script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js\"></script>", true);
-	// 				// $this->modx->regClientStartupScript("<script type=\"text/javascript\" src=\"/assets/components/shopstats/js/mgr/bootstrap.min.js\"></script>", true);
-	// 				// $this->modx->regClientStartupScript("<script type=\"text/javascript\" src=\"//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js\"></script>", true);
-	// 				// $this->modx->regClientStartupScript("<script type=\"text/javascript\" src=\"/assets/components/shopstats/js/mgr/morris.min.js\"></script>", true);			
-	// 	       // }
-	// 	        //$this->assetsLoaded = true;
-	// 		break;
-	// 		default: break;
-	// 	}
-
-	// }
 
 	public function getStats(){
 		$stats = 'ok	';
@@ -96,7 +71,6 @@ class shopStats {
 			return false;
 		}
 
-		//$stats = $this->modx->toJSON($this->shop->getStats());
 		$stats = $this->shop->getStats();
 
 		foreach($stats['total_counts'] as $status_key => $status){
@@ -104,10 +78,8 @@ class shopStats {
 		        $labels[$month_key] = '"'.$month_key.'"';
 		        if(count($month[$status_key]) > 0){
 		            $dataCount[$status_key][$month_key] = $month[$status_key]['count_orders'];
-		            //$dataCost[$status_key][$month_key] = $month[$status_key]['order_cost'];
 		        }else{
 		            $dataCount[$status_key][$month_key] = 0;
-		            //$dataCost[$status_key][$month_key] = 0;
 		        }
 
 		        $dataCost[$status_key][$month_key] = !empty($month[$status_key]['total_cost']) ? $month[$status_key]['total_cost'] : 0;
@@ -120,7 +92,7 @@ class shopStats {
 				pointStrokeColor : "#'.$status['color'].'",
 				pointHighlightFill : "#'.$status['color'].'",
 				pointHighlightStroke : "#'.$status['color'].'",
-				data : ['.implode(",", $dataCount[$status_key]).']
+				data : [0,'.implode(",", $dataCount[$status_key]).']
 			}';
 			$datasetsCost[] = '{
 				label: "'.$status['name'].'",
@@ -130,12 +102,12 @@ class shopStats {
 				pointStrokeColor : "#'.$status['color'].'",
 				pointHighlightFill : "#'.$status['color'].'",
 				pointHighlightStroke : "#'.$status['color'].'",
-				data : ['.implode(",", $dataCost[$status_key]).']
+				data : [0,'.implode(",", $dataCost[$status_key]).']
 			}';
 		}
 		$datasetsCount = implode(",", $datasetsCount);
 		$datasetsCost = implode(",", $datasetsCost);
-		$labels = implode(",", $labels);
+		$labels = '0,'.implode(",", $labels);
 
 		$this->modx->regClientStartupScript('<script type="text/javascript">
 			var lineChartCount = {
