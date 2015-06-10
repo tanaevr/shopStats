@@ -2,4 +2,5 @@ Changelog for shopStats.
 
 1.0.0-beta
 ==============
+- Fixed: ошибка "первого месяца"
 
