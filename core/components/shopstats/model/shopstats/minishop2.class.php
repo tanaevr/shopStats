@@ -24,7 +24,7 @@ class minishop2_shop implements statsInterface {
 	
 
 	function getStats(){
-		$output = '';
+		$output = array();
 
 		$q_status = $this->modx->newQuery('msOrderStatus', array('active' => 1));
 		$q_status->select('id,name,color');
