@@ -572,7 +572,7 @@ a.bg-danger:hover {
 .sidebar ul.nav .active > a:focus, .sidebar ul.nav li.parent a.active:focus {
 	color: #fff;
 	background-color: #30a5ff;
-}*/
+}
 
 .sidebar ul.nav ul,
 .sidebar ul.nav ul li {
@@ -875,11 +875,12 @@ h1.page-header {
 }
 .dashboard-stats{
 	background-color: transparent; 
-	border-radius: none;
+	border-radius: 0;
 	-webkit-box-shadow: none; 
 	box-shadow: none;
 	float: left;
 	margin: 6px 0;
+	min-height: 450px !important;
 }
 .dashboard-stats .body{
 	padding-left: 0;
